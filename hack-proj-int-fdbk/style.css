@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+:root {
+  --main-gold: #d9b570;
+  --main-olive: #8b9b6d;
+  --main-blue: #3d6892;
+  --main-burgundy: #9c3955;
+  --neutral-cream: #ede9dd;
+  --neutral-taupe: #d6c8ba;
+  --neutral-brown: #6b483c;
+  --neutral-charcoal: #323232;
+  --accent-rust: #c45d4c;
+  --accent-copper: #c49a81;
+  --accent-navy: #2a4769;
+  --accent-teal: #2c8c7c;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(to right, var(--neutral-brown), var(--neutral-charcoal));
+  color: var(--neutral-cream);
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Animation Keyframes */
+@keyframes slideIn {
+  0% { transform: translateY(-100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-slideIn { animation: slideIn 0.8s ease-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fadeIn { animation: fadeIn 1s ease-in; }
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.animate-scaleUp { animation: scaleUp 0.8s ease-out; }
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+.hover\:pulse:hover {
+  animation: pulse 1.2s ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.floating {
+  animation: floating 3s infinite ease-in-out;
+}
+
+/* Star Animation */
+.star-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation: float 8s infinite ease-in-out;
+}
+
+/* Utility */
+.button-transition {
+  transition: all 0.3s ease;
+}
+.shadow-custom {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

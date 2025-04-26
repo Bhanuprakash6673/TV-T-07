@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interview - AI Interview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+    :root {
+      --main-gold: #d9b570;
+      --main-olive: #8b9b6d;
+      --main-blue: #3d6892;
+      --main-burgundy: #9c3955;
+      --neutral-cream: #ede9dd;
+      --neutral-taupe: #d6c8ba;
+      --neutral-brown: #6b483c;
+      --neutral-charcoal: #323232;
+      --accent-rust: #c45d4c;
+      --accent-copper: #c49a81;
+      --accent-navy: #2a4769;
+      --accent-teal: #2c8c7c;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: url('https://i.pinimg.com/originals/8e/f5/b2/8ef5b2088947661859ed3f0d2ff67349.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--neutral-cream);
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+      z-index: -1;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      position: relative; /* Ensure text is above overlay */
+    }
+
+    #jobRole, #category, #questionCount {
+      color: var(--main-gold);
+    }
+
+    #jobRole option, #category option, #questionCount option {
+      color: var(--main-gold);
+      background-color: var(--neutral-charcoal);
+    }
+
+    /* Ensure other elements are above the overlay */
+    header, main {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="bg-neutral-charcoal text-neutral-cream p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center">
+        <i class="fas fa-user-graduate text-2xl mr-2" style="color: var(--main-gold);"></i>AI Interview
+      </h1>
+      <a href="index.html" class="bg-accent-rust px-4 py-2 rounded hover:bg-accent-rust/80 text-white">Home</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-8 p-6 max-w-2xl">
+    <div class="bg-neutral-charcoal/80 backdrop-blur-md rounded-lg p-6 shadow-lg">
+      <div id="interviewSetup">
+        <h2 class="text-xl font-semibold mb-4">Interview Setup</h2>
+
+        <!-- Job Role Dropdown -->
+        <div class="mb-4">
+          <label for="jobRole" class="block text-neutral-taupe font-semibold mb-2">Select Job Role</label>
+          <select id="jobRole" class="w-full border border-neutral-brown bg-neutral-charcoal text-neutral-cream rounded-md p-3">
+            <option value="frontend">Frontend Developer</option>
+            <option value="backend">Backend Developer</option>
+            <option value="fullstack">Fullstack Developer</option>
+            <option value="uiux">UI/UX Designer</option>
+            <option value="datascientist">Data Scientist</option>
+          </select>
+        </div>
+
+        <!-- Interview Category Dropdown -->
+        <div class="mb-4">
+          <label for="category" class="block text-neutral-taupe font-semibold mb-2">Select Interview Category</label>
+          <select id="category" class="w-full border border-neutral-brown bg-neutral-charcoal text-neutral-cream rounded-md p-3">
+            <option value="technical">Technical</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+
+        <!-- Question Number Dropdown -->
+        <div class="mb-4">
+          <label for="questionCount" class="block text-neutral-taupe font-semibold mb-2">Number of Questions</label>
+          <select id="questionCount" class="w-full border border-neutral-brown bg-neutral-charcoal text-neutral-cream rounded-md p-3">
+            <option value="5">5 Questions</option>
+            <option value="10">10 Questions</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="startInterviewBtn" class="w-full bg-gradient-to-r from-green-400 to-green-100 text-black py-3 rounded-md hover:bg-accent-rust/90 hover:pulse">Begin Interview</button>
+
+      <div id="interviewSection" class="hidden mt-6">
+        <h2 class="text-xl font-semibold mb-2">Question <span id="questionNumber">1</span>/<span id="totalQuestions"></span></h2>
+        <p id="currentQuestion" class="mb-4"></p>
+        <button id="startSpeech" class="w-full bg-main-gold text-neutral-charcoal py-2 rounded hover:bg-black">Start Speaking</button>
+        <button id="stopSpeech" class="w-full bg-red-600 text-white py-2 mt-2 rounded hover:bg-red-700 hidden">Stop Speaking</button>
+        <div class="mt-4">
+          <label class="block text-neutral-taupe font-semibold mb-2">Your Response</label>
+          <textarea id="responseOutput" class="w-full border border-neutral-brown bg-neutral-charcoal text-black p-3 rounded" readonly></textarea>
+        </div>
+        <div id="instantFeedback" class="mt-4 hidden">
+          <h3 class="text-lg font-semibold text-main-gold">Instant Feedback</h3>
+          <p id="feedbackText"></p>
+          <p id="scoreText"></p>
+        </div>
+        <button id="nextQuestion" class="w-full bg-green-600 text-white py-2 rounded mt-4 hidden hover:bg-green-700">Next Question</button>
+      </div>
+
+      <div id="overallFeedback" class="mt-6 hidden">
+        <div id="feedbackContent"></div>
+        <a href="index.html" class="block w-full bg-main-gold text-neutral-charcoal py-2 rounded mt-4 text-center hover:bg-yellow-400">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935f716a180ead80',t:'MTc0NTYwMDkxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

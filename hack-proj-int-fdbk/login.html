@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - AI Interview</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+    :root {
+      --main-gold: #d9b570;
+      --main-olive: #8b9b6d;
+      --main-blue: #3d6892;
+      --main-burgundy: #9c3955;
+      --neutral-cream: #ede9dd;
+      --neutral-taupe: #d6c8ba;
+      --neutral-brown: #6b483c;
+      --neutral-charcoal: #323232;
+      --accent-rust: #c45d4c;
+      --accent-copper: #c49a81;
+      --accent-navy: #2a4769;
+      --accent-teal: #2c8c7c;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: url('https://i.pinimg.com/originals/8e/f5/b2/8ef5b2088947661859ed3f0d2ff67349.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--neutral-cream);
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+      z-index: -1;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      position: relative; /* Ensure text is above overlay */
+    }
+
+    /* Ensure other elements are above the overlay */
+    header, main {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="star-container" aria-hidden="true"></div>
+
+  <header class="bg-neutral-charcoal text-neutral-cream p-4 shadow-md animate-slideIn">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center animate-fadeIn delay-200">
+        <i class="fas fa-user-graduate text-2xl mr-2" style="color: var(--main-gold);"></i>
+        AI Interview
+      </h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-10 p-6 max-w-md">
+    <div class="bg-neutral-charcoal/80 backdrop-blur-md rounded-lg p-6 shadow-lg animate-fadeInUp">
+      <h2 class="text-2xl font-semibold mb-4 text-center text-main-gold animate-fadeInUp delay-200">Login</h2>
+      <form id="loginForm">
+        <div class="mb-4 animate-fadeInUp delay-400">
+          <label for="email" class="block text-neutral-taupe font-semibold mb-2">Email</label>
+          <input type="email" id="email" class="w-full border border-neutral-brown bg-neutral-charcoal text-black rounded-md p-3" required>
+        </div>
+        <div class="mb-6 animate-fadeInUp delay-600">
+          <label for="password" class="block text-neutral-taupe font-semibold mb-2">Password</label>
+          <input type="password" id="password" class="w-full border border-neutral-brown bg-neutral-charcoal text-black rounded-md p-3" required>
+        </div>
+        <button type="submit" id="loginBtn" class="w-full bg-accent-rust text-white py-3 rounded-md hover:bg-accent-rust/90 hover:pulse button-transition animate-fadeInUp delay-800">
+          <i class="fas fa-sign-in-alt mr-2"></i> Login
+        </button>
+      </form>
+      <p class="mt-4 text-center text-neutral-taupe animate-fadeInUp delay-1000">
+        Don't have an account? <a href="signup.html" class="text-main-gold hover:underline">Sign Up</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script>
+    // Create stars for background animation
+    function createStars() {
+      const starContainer = document.querySelector('.star-container');
+      const starCount = 30;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Random properties
+        const size = Math.random() * 4 + 1;
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        const delay = Math.random() * 8;
+        const duration = Math.random() * 4 + 6;
+        const opacity = Math.random() * 0.5 + 0.1;
+        
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${posX}px`;
+        star.style.top = `${posY}px`;
+        star.style.animationDelay = `${delay}s`;
+        star.style.animationDuration = `${duration}s`;
+        star.style.backgroundColor = getRandomColor();
+        star.style.opacity = opacity;
+        
+        starContainer.appendChild(star);
+      }
+    }
+    
+    function getRandomColor() {
+      const colors = [
+        '#d9b570', '#8b9b6d', '#3d6892', '#9c3955',
+        '#c45d4c', '#c49a81', '#2a4769', '#2c8c7c'
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    // Initialize stars
+    window.addEventListener('load', createStars);
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935f716a196453c8',t:'MTc0NTYwMDkxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9363b842cf39b001',t:'MTc0NTY0NTc1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

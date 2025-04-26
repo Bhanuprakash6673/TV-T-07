@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Interview Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+    
+    :root {
+      --main-gold: #d9b570;
+      --main-olive: #8b9b6d;
+      --main-blue: #3d6892;
+      --main-burgundy: #9c3955;
+      --neutral-cream: #ede9dd;
+      --neutral-taupe: #d6c8ba;
+      --neutral-brown: #6b483c;
+      --neutral-charcoal: #323232;
+      --accent-rust: #c45d4c;
+      --accent-copper: #c49a81;
+      --accent-navy: #2a4769;
+      --accent-teal: #2c8c7c;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: url('https://cdn.wallpapersafari.com/28/2/vrIzJD.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--neutral-cream);
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Slightly lighter overlay for contrast */
+      z-index: -1;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      position: relative; /* Ensure text is above overlay */
+    }
+
+    #language {
+      color: var(--main-gold);
+    }
+
+    #language option {
+      color: var(--main-gold);
+      background-color: var(--neutral-charcoal);
+    }
+
+    /* Ensure other elements are above the overlay */
+    header, section, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="star-container" aria-hidden="true"></div>
+  
+  <header class="bg-gradient-to-r from-neutral-brown to-neutral-charcoal text-neutral-cream p-4 shadow-md animate-slideIn">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center animate-fadeIn delay-200">
+        <i class="fas fa-user-graduate text-2xl mr-2" style="color: var(--main-gold);"></i>
+        <span class="text-main-gold">AI</span> Interview Platform
+      </h1>
+      <div class="flex items-center space-x-4 animate-fadeIn delay-400">
+        <nav class="space-x-4">
+          <a href="about.html" class="text-neutral-taupe hover:text-neutral-cream transition-colors duration-300">About</a>
+        </nav>
+        <button id="logoutBtn" class="bg-accent-rust hover:bg-accent-rust/80 text-white px-4 py-2 rounded-md button-transition">
+          <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="bg-gradient-to-r from-main-olive to-accent-teal text-neutral-cream py-16 text-center shadow-custom">
+    <h1 class="text-4xl font-bold mb-4 animate-scaleUp">Welcome to the AI Interview Platform</h1>
+    <p class="text-lg animate-scaleUp delay-200 max-w-2xl mx-auto">Practice and improve your interview skills with AI-driven feedback and personalized guidance.</p>
+  </section>
+
+  <main class="container mx-auto mt-8 p-6 max-w-md mx-auto">
+    <div class="bg-neutral-charcoal/80 backdrop-blur-md rounded-lg p-6 shadow-custom">
+      <h2 id="welcomeMessage" class="text-2xl bg-gradient-to-r from-purple-500 to-pink-300 rounded-md p-3 font-semibold mb-4 text-center animate-fadeInUp text-main-gold">Welcome!</h2>
+      <p class="text-neutral-cream mb-6 text-center animate-fadeInUp delay-200">Select your interview language and start your practice session.</p>
+      
+      <div class="mb-6 animate-fadeInUp delay-400">
+        <label for="language" class="block text-neutral-taupe font-bold mb-2" aria-label="Select Interview Language">Language</label>
+        <select id="language" class="w-full border border-neutral-brown bg-white text-purple-900 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-accent-teal transition-all duration-300" aria-describedby="language-description">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+        <p id="language-description" class="text-sm text-neutral-charcoal mt-2">Choose your preferred language for the interview.</p>
+        <div id="languageInstructions" class="text-accent-copper mt-4 text-center"></div>
+      </div>
+      
+      <button id="startInterview" class="w-full bg-main-blue text-black py-3 rounded-md hover:bg-green-400 animate-fadeInUp delay-600 hover:pulse button-transition flex items-center justify-center floating">
+        <i class="fas fa-microphone mr-2"></i> Start Interview
+      </button>
+    </div>
+  </main>
+
+  <footer class="bg-neutral-charcoal text-neutral-taupe py-6 mt-8 animate-fadeIn">
+    <div class="container mx-auto text-center">
+      <p class="text-sm">© 2025 AI Interview Platform</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Create stars for background animation
+    function createStars() {
+      const starContainer = document.querySelector('.star-container');
+      const starCount = 30;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Random properties
+        const size = Math.random() * 4 + 1;
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+        const delay = Math.random() * 8;
+        const duration = Math.random() * 4 + 6;
+        const opacity = Math.random() * 0.5 + 0.1;
+        
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${posX}px`;
+        star.style.top = `${posY}px`;
+        star.style.animationDelay = `${delay}s`;
+        star.style.animationDuration = `${duration}s`;
+        star.style.backgroundColor = getRandomColor();
+        star.style.opacity = opacity;
+        
+        starContainer.appendChild(star);
+      }
+    }
+    
+    function getRandomColor() {
+      const colors = [
+        '#d9b570', '#8b9b6d', '#3d6892', '#9c3955',
+        '#c45d4c', '#c49a81', '#2a4769', '#2c8c7c'
+      ];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    // Initialize stars
+    window.addEventListener('load', createStars);
+  </script>
+  <noscript>
+    <p class="text-accent-rust text-center p-4 bg-neutral-charcoal/50 rounded-lg mx-4">JavaScript is disabled. Please enable it to use the interview platform.</p>
+  </noscript>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935f716a1ea8507f',t:'MTc0NTYwMDkxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93640fa60af5b060',t:'MTc0NTY0OTMzNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

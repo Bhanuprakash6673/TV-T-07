@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - AI Interview Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap');
+
+    :root {
+      --main-gold: #d9b570;
+      --main-olive: #8b9b6d;
+      --main-blue: #3d6892;
+      --main-burgundy: #9c3955;
+      --neutral-cream: #ede9dd;
+      --neutral-taupe: #d6c8ba;
+      --neutral-brown: #6b483c;
+      --neutral-charcoal: #323232;
+      --accent-rust: #c45d4c;
+      --accent-copper: #c49a81;
+      --accent-navy: #2a4769;
+      --accent-teal: #2c8c7c;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: url('https://img.freepik.com/premium-photo/ai-stealing-our-jobs-ai-job-interview-generative-ai_877869-750.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--neutral-cream);
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+      z-index: -1;
+    }
+
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      position: relative; /* Ensure text is above overlay */
+    }
+
+    header {
+      background: rgba(50, 50, 50, 0.9); /* Semi-transparent header */
+      position: relative;
+      z-index: 1;
+    }
+
+    main .bg-neutral-charcoal\/80 {
+      background: rgba(50, 50, 50, 0.8); /* Adjust content box transparency */
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="bg-neutral-charcoal text-neutral-cream p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold flex items-center">
+        <i class="fas fa-user-graduate text-2xl mr-2" style="color: var(--main-gold);"></i>AI Interview Platform
+      </h1>
+      <a href="index.html" class="text-main-gold hover:underline">Home</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-10 p-6 max-w-2xl">
+    <div class="bg-neutral-charcoal/80 backdrop-blur-md rounded-lg p-6 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4 text-center text-main-gold">About This Platform</h2>
+      <p class="text-neutral-cream mb-4">
+        The AI Interview Platform helps users sharpen their interview skills using AI-driven questions and feedback. You can choose technical or general categories, speak your answers, and receive real-time analysis.
+      </p>
+      <p class="text-neutral-cream mb-4">
+        Whether you're preparing for a job interview or just want to improve communication skills, this platform offers a practical, supportive, and immersive experience.
+      </p>
+      <a href="index.html" class="block w-full bg-accent-rust text-white py-2 rounded text-center hover:bg-accent-rust/90">Back to Home</a>
+    </div>
+  </main>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'935f716a19811d7e',t:'MTc0NTYwMDkxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
